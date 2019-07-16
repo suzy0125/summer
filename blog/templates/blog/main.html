@@ -1,0 +1,46 @@
+{%extends "blog/base.html"%}
+{% block content %}
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h1>{{post.title}}</h1>
+        <div style="float: right;">
+            <a href="{% url 'edit' post.id %}">수정</a>
+            <a href="{% url 'delete' post.id %}">삭제</a>
+            <a href="{% url 'home' %}">홈으로</a>
+        </div>
+        <br>
+        <hr>
+        <img src="{{post.image.url}}" height="200px">
+        <h2 style="color: rgb(255, 242, 0);">별점 : {{post.star}} </h2>
+        <h4>{{post.text}}</h4>
+        <br>
+    </div>
+    <div class="panel-footer">
+        <hr>
+        {% for comment in post.comments.all %}
+        <div class="row">
+            <div class="col-9" style="text-align:left">
+                <strong>{{user.username}}</strong>
+                {{comment.text|linebreaks}}</div>
+            <div class="col-3"><a href="{% url 'delete_comment' comment_id=comment.id %}">댓글삭제</a></div>
+        </div>
+        {%empty%}
+        <p>댓글이 없습니다.</p>
+        {%endfor%}
+        <div class="form-group">
+            <div class="row">
+                <div class="col-9">
+                    <form method="POST" action="{% url 'add_comment' post.id%}">
+                        {% csrf_token %}
+                        {{form.as_table}}
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="save btn btn-default">작성</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+{%endblock%}
