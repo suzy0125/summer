@@ -5,8 +5,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
 
-    <style>
+ <style>
         body {
             background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
             background-repeat: no-repeat;
@@ -54,17 +55,16 @@
         <h1 style="color:rgb(60, 22, 113)">너도 보고 싶어?</h1>
         <p style="color:rgb(135, 84, 205)">영화, 드라마, 책, 웹툰 추천 및 후기 </p>
     </a>
-    <div style="text-align: right; margin: 0 250 0 0;">
-        {%if user.is_active%}
-        <p>{{user.username}}
-            <a href="{% url 'logout'%}">logout</a></p>
-        {%else%}
-        <a href="{% url 'accounts:signup'%}">signup</a>
-        <a href="{% url 'login'%}">Login</a>
-        {%endif%}
-    </div>
     <div class="container">
-        <br>
+            <div style="text-align: right;">
+                    {%if user.is_active%}
+                    <p>{{user.username}}
+                        <a href="{% url 'logout'%}">logout</a></p>
+                    {%else%}
+                    <a href="{% url 'accounts:signup'%}">signup</a>
+                    <a href="{% url 'login'%}">Login</a>
+                    {%endif%}
+                </div>
         {% block content %}
         {% endblock %}
     </div>
