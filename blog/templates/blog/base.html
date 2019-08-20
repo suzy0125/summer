@@ -43,6 +43,7 @@
             color: rgb(105, 72, 150);
             text-decoration: none;
         }
+
     </style>
 
 </head>
@@ -50,7 +51,7 @@
 <body>
     <a href="{% url 'home' %}">
         <div class=a>
-            <img src="https://cdn.pixabay.com/photo/2019/04/26/06/09/islamic-lamps-4156805_960_720.png" height="180px" alt="">
+            <img src="{% static "lamp.png" %}" id="logo" style="height : 100px;"></a>
         </div>
         <h1 style="color:rgb(60, 22, 113)">너도 보고 싶어?</h1>
         <p style="color:rgb(135, 84, 205)">영화, 드라마, 책, 웹툰 추천 및 후기 </p>
